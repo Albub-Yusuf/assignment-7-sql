@@ -1,0 +1,110 @@
+Employees Table Questions Answer -
+---------------------------------------------
+
+a. Write a query to select all columns and rows from the employees table.
+
+Answer:  SELECT * FROM `employees`;
+
+    explanation :  For fetching all the colums and row we are using SELECT *  commands which denotes select all from the employees table.
+
+
+
+b. Write a query to select only the name and salary columns of all employees with a salary greater than 50000.
+
+Answer:  SELECT name,salary FROM `employees` WHERE salary > 50000;
+
+        explanation : Here we are selecting name and salary field from employees table and we are fetching the data using
+                         "WHERE" clause/ condition on salary column and check if the salary is more than 50000 or not.
+
+
+
+c. Write a query to calculate the average salary of all employees.
+
+Answer:  SELECT AVG(salary) as average_salary FROM employees;
+
+        explanation:  Here we are using "AVG" aggregate function on salary column to find out the average salary of the employees,
+                        we also use "as" keyword to aliasing the field name as average_salary.
+
+
+d. Write a query to count the number of employees who work in the "Marketing" department.
+
+Answer:    SELECT departments.name,COUNT(department_id) as total_memebers
+            FROM employees
+            JOIN departments 
+            ON employees.department_id = departments.id
+             WHERE departments.name="Marketing";
+
+
+        explanation :   As the employees table has a column named "department_id" which is same as departments table id so
+                        first we are Selecting department.name and COUNT() aggregate function based on department_id from employees table 
+                        and using JOIN / INNER JOIN with the departments table based on (employees.department_id & departments.id) after that
+                        we are finding out the specific data using WHERE condition.
+
+
+
+
+e. Write a query to update the salary column of the employee with an id of 1001 to 60000.
+
+Answer:    UPDATE `employees` SET `salary` = 60000 WHERE `id` = 1001;
+
+
+    explanation: To update the row we use UPDATE command and Set the new salary values using SET keyword based on the id of 1001 using the "WHERE" condition;
+
+
+
+
+f. Write a query to delete all employees whose salary is less than 30000.
+
+Answer:    DELETE FROM employees WHERE salary < 30000;
+
+          explanation: Here we are using DELETE keyword for deleting the row from employees table based on WHERE condition on salary column
+
+
+------------------------------------------------------------------------------------------
+
+Departments Table Answer -
+
+a. Write a query to select all columns and rows from the departments table.
+
+Answer:    SELECT * FROM `departments`;
+
+
+            explanation:  Here are we are using SELECT * which denotes select all from the departments table for fetching all data
+
+
+
+b. Write a query to select only the name and manager columns of the "Finance" department.
+
+Answer:    SELECT name, manager FROM departments WHERE name="Finance";
+
+
+        explanation:  Here we are using "WHERE" condition on name column and give the value of Finance to find out the data.
+        
+
+
+c. Write a query to calculate the total number of employees in each department.
+
+Answer:    SELECT departments.name,COUNT(department_id) as total_employees
+            FROM departments
+           	LEFT JOIN employees 
+            ON employees.department_id = departments.id
+            GROUP BY departments.name;
+
+
+            explanation: First we are selecting department name and count the department_id from departments table and we use 
+            LEFT JOIN between departments and employees table ON (employees.department_id & departments.id) so that we get all
+            data from departments table and finally we are using "GROUP BY" on departments.name so that the COUNT aggregate 
+            function shows exact data for each departments.
+
+        
+
+
+
+d. Write a query to insert a new department called "Research" with a manager named "John Doe".
+
+Answer:    INSERT INTO `departments`(`name`, `manager`) VALUES ('Research','John Doe');
+
+            
+            explanation : As departments table id column is auto incremented so we are only inserting the values of 
+            "name" and "manager" column by using  INSERT INTO keyword then the table name which is "departments" along with
+            the columns name  of ("name","manager") then assign the values using VALUES('Research', 'John Doe').
